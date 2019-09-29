@@ -19,10 +19,21 @@ const phrases = [
 
 //function to get randomItem from any array
 function getRandomPhraseAsArray(arr) {
-    let randomItem = arr[Math.floor(Math.random() * arr.length)];
-    console.log(randomItem);
-
-    return(randomItem);
+    const randomItem = arr[Math.floor(Math.random() * arr.length)];
+    // console.log(randomItem);
+    let characters = Array.from(randomItem);
+    console.log(characters);
+//     for (i=0; i<randomItem.length; i++) {
+//         let charactersArray = [];
+// // https://stackoverflow.com/questions/3427132/how-to-get-first-character-of-string
+// // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt
+//         // console.log(randomItem.charAt(i));
+//         let characters = randomItem.charAt(i);
+//         // charactersArray = Array.from(characters);
+//         // charactersArray = characters.split(",");
+//         console.log(charactersArray);
+//     }
+//     return(randomItem);
 }
 
 getRandomPhraseAsArray(phrases);
