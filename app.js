@@ -1,5 +1,5 @@
 const qwerty = document.getElementById('qwerty');
-const phrase = document.getElementById('phrase');
+let phrase = document.getElementById('phrase');
 const missed = 0;
 const startButton = document.querySelector('.btn__reset');
 // let characters = [];
@@ -17,7 +17,7 @@ const phrases = [
 //function to get randomItem from any array
 function getRandomPhraseAsArray(arr) {
     const randomItem = arr[Math.floor(Math.random() * arr.length)];
-    let characters = new Object();
+    // let characters = new Object();
     characters = Array.from(randomItem);
     console.log(characters);
     return characters;
@@ -36,14 +36,18 @@ function addPhraseToDisplay(arr) {
         ul.appendChild(li);  //append list item to ul
         if (character !== ' ') {  //add .letter class if character is not space
             li.className += 'letter'; 
+        } else {
+            li.claseName += 'space';
         }
     }
     // return(character);
 }
 
-const phraseArray = getRandomPhraseAsArray(phrases);
-addPhraseToDisplay(phraseArray);
+// const phraseArray = getRandomPhraseAsArray(phrases);
+// addPhraseToDisplay(phraseArray);
 
+phrase = getRandomPhraseAsArray(phrases); 
+addPhraseToDisplay(phrase);
 
 
 
