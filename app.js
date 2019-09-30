@@ -2,6 +2,7 @@ const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const missed = 0;
 const startButton = document.querySelector('.btn__reset');
+// let characters = [];
 
 // source: https://boards.straightdope.com/sdmb/archive/index.php/t-334013.html
 const phrases = [
@@ -13,30 +14,35 @@ const phrases = [
 ];
 
 // https://stackoverflow.com/questions/5915096/get-random-item-from-javascript-array#5915122
-// gets random phrase specifically in phrases array
-// let randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-// console.log(randomPhrase);
-
 //function to get randomItem from any array
 function getRandomPhraseAsArray(arr) {
     const randomItem = arr[Math.floor(Math.random() * arr.length)];
-    // console.log(randomItem);
-    let characters = Array.from(randomItem);
+    let characters = new Object();
+    characters = Array.from(randomItem);
     console.log(characters);
-//     for (i=0; i<randomItem.length; i++) {
-//         let charactersArray = [];
-// // https://stackoverflow.com/questions/3427132/how-to-get-first-character-of-string
-// // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt
-//         // console.log(randomItem.charAt(i));
-//         let characters = randomItem.charAt(i);
-//         // charactersArray = Array.from(characters);
-//         // charactersArray = characters.split(",");
-//         console.log(charactersArray);
-//     }
-//     return(randomItem);
+    return characters;
 }
 
-getRandomPhraseAsArray(phrases);
+function addPhraseToDisplay(arr) {
+    getRandomPhraseAsArray(arr); 
+    let characters = getRandomPhraseAsArray(arr); 
+    for (i=0; i<characters.length; i++) {  //loop through array of characters
+        const character = characters[i];  
+        const ul = document.querySelector('ul');
+        const li = document.createElement('li');   //create li
+        const span = document.createElement('span'); //create span to hold text
+        span.textContent = character.value;  //put character inside list item
+        li.appendChild(span);
+        ul.appendChild(li);  //append list item to ul
+        if (character !== ' ') {  //add .letter class if character is not space
+            li.className += 'letter'; 
+        }
+    }
+    // return(character);
+}
+
+const phraseArray = getRandomPhraseAsArray(phrases);
+addPhraseToDisplay(phraseArray);
 
 
 
