@@ -1,5 +1,5 @@
 const qwerty = document.getElementById('qwerty');
-let phrase = document.getElementById('phrase');
+const phrase = document.getElementById('phrase');
 const missed = 0;
 const startButton = document.querySelector('.btn__reset');
 // let characters = [];
@@ -24,30 +24,23 @@ function getRandomPhraseAsArray(arr) {
 }
 
 function addPhraseToDisplay(arr) {
-    getRandomPhraseAsArray(arr); 
-    let characters = getRandomPhraseAsArray(arr); 
-    for (i=0; i<characters.length; i++) {  //loop through array of characters
-        const character = characters[i];  
-        const ul = document.querySelector('ul');
+    const ul = document.querySelector('ul');
+    for (i=0; i<arr.length; i++) {  //loop through array of characters
+        const character = characters[i];         
         const li = document.createElement('li');   //create li
-        const span = document.createElement('span'); //create span to hold text
-        span.textContent = character.value;  //put character inside list item
-        li.appendChild(span);
+        li.textContent = arr[i];  //put character in li
         ul.appendChild(li);  //append list item to ul
         if (character !== ' ') {  //add .letter class if character is not space
             li.className += 'letter'; 
         } else {
-            li.claseName += 'space';
+            li.className += 'space';
         }
     }
-    // return(character);
 }
 
-// const phraseArray = getRandomPhraseAsArray(phrases);
-// addPhraseToDisplay(phraseArray);
+const phraseArray = getRandomPhraseAsArray(phrases);
+addPhraseToDisplay(phraseArray);
 
-phrase = getRandomPhraseAsArray(phrases); 
-addPhraseToDisplay(phrase);
 
 
 
