@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const phrase = document.getElementById('phrase');
     const missed = 0;
     const startButton = document.querySelector('.btn__reset');
-    // let characters = [];
+    const keyrow = document.getElementsByClassName('keyrow');
+    const button = keyrow.children;
 
     // source: https://boards.straightdope.com/sdmb/archive/index.php/t-334013.html
     const phrases = [
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     // https://stackoverflow.com/questions/5915096/get-random-item-from-javascript-array#5915122
-    //function to get randomItem from any array
+    //Get randomItem from any array
     function getRandomPhraseAsArray(arr) {
         const randomItem = arr[Math.floor(Math.random() * arr.length)];
         // let characters = new Object();
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return characters;
     }
 
+    //Display Random Phrase
     function addPhraseToDisplay(arr) {
         const ul = document.querySelector('ul');
         for (i=0; i<arr.length; i++) {  //loop through array of characters
@@ -39,22 +41,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
-
-
-    const keyrow = document.getElementsByClassName('keyrow');
-    const button = document.querySelectorAll('keyrow button');
-
-
-    // check chosen letter against phrase
+// check chosen letter against phrase
         function checkLetter(button) {
             const letter = document.getElementsByClassName('letter');
-            // const buttons = document.querySelectorAll('.keyrow button');
-            for (i=0; i<button.length; i++) {
-                if (button[i].textContent === letter.textContent) {
+            for (i=0; i<letter.length; i++) {
+                if (letter[i].textContent === button.textContent) {
+                    li.className += "show";
                     console.log('true');
+                    const match = button.textContent;
+                    return match;
                 } else {
                     console.log('false');
+                    return null;
                 }
             };
         }
@@ -65,10 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
     addPhraseToDisplay(phraseArray);
 
 
-
-
-
-
     //remove start-game overlay
     startButton.addEventListener('click', (e) => {
         const startOverlay = document.getElementById('overlay');
@@ -76,12 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     // // Add an event listener to the keyboard
-    for (i=0; i<button.length; i++) {
-    button[i].addEventListener('click', (e) => {
-        e.target.className += "chosen";
-        console.log(button.textContent);
-        checkLetter();
-    });
+    for (i = 0; i < keyrow.length; i++) {
+        keyrow[i].addEventListener('click', (e) => {
+            e.target.className += "chosen";
+            const chosen = document.querySelector('.keyrow.chosen');
+            console.log(keyrow.textContent);
+            checkLetter();
+        });
     }
 });
 
