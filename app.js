@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const qwerty = document.getElementById('qwerty');
     const phrase = document.getElementById('phrase');
-    const missed = 0;
+    let missed = 0;
     const startButton = document.querySelector('.btn__reset');
     const keyrow = document.getElementsByClassName('keyrow');
     const button = keyrow.children;
+    const mainContainer = document.querySelector('.main-container');
 
     // source: https://boards.straightdope.com/sdmb/archive/index.php/t-334013.html
     const phrases = [
@@ -44,18 +45,33 @@ document.addEventListener('DOMContentLoaded', () => {
 // check chosen letter against phrase
         function checkLetter(button) {
             const letter = document.getElementsByClassName('letter');
-            for (i=0; i<letter.length; i++) {
-                if (letter[i].textContent === button.textContent) {
+            for (i=0; i<letter.length; i+=1) {
+                if (letter[i] === button) {
                     li.className += "show";
+                    const show = document.getElementsByClassName('show');
                     console.log('true');
-                    const match = button.textContent;
+                    const match = chosen.textContent;
                     return match;
                 } else {
                     console.log('false');
+                    missed += 1;
                     return null;
+                    
+
                 }
             };
         }
+
+    function checkWin() {
+        const overlay = document.getElementById('overlay');
+        if (show.length === letters.length) {
+            overlay.className += "win";
+        }
+        else if (missed === 5) {
+            overlay.className += "lose";
+        } 
+        overlay.style.display = "block";
+    };
 
 
 
@@ -65,18 +81,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //remove start-game overlay
     startButton.addEventListener('click', (e) => {
-        const startOverlay = document.getElementById('overlay');
-        startOverlay.style.display = 'none';
+        const overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
     })
 
     // // Add an event listener to the keyboard
-    for (i = 0; i < keyrow.length; i++) {
+    for (i = 0; i < keyrow.length; i+=1) {
         keyrow[i].addEventListener('click', (e) => {
             e.target.className += "chosen";
-            const chosen = document.querySelector('.keyrow.chosen');
-            console.log(keyrow.textContent);
-            checkLetter();
-        });
-    }
+            const chosen = document.getElementsByClassName('chosen');
+            console.log(e.target.textContent);   
+            checkLetter(e.target);  
+        })
+    };
+
+
+
 });
 
