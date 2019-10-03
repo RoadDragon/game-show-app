@@ -46,18 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
         function checkLetter(button) {
             const letter = document.getElementsByClassName('letter');
             for (i=0; i<letter.length; i+=1) {
-                if (letter[i] === button) {
-                    li.className += "show";
-                    const show = document.getElementsByClassName('show');
+                if (letter[i].innerHTML === button.innerHTML) {
+                    letter[i].classList.add("show");
+                    // const show = document.getElementsByClassName('show');
                     console.log('true');
-                    const match = chosen.textContent;
-                    return match;
+                    // const match = chosen.innerHTML;
+                    // return match;
+                    return letter[i];
                 } else {
                     console.log('false');
                     missed += 1;
                     return null;
-                    
-
                 }
             };
         }
@@ -85,17 +84,28 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.style.display = 'none';
     })
 
-    // // Add an event listener to the keyboard
+    // Add an event listener to the keyboard
     for (i = 0; i < keyrow.length; i+=1) {
         keyrow[i].addEventListener('click', (e) => {
-            e.target.className += "chosen";
-            const chosen = document.getElementsByClassName('chosen');
-            console.log(e.target.textContent);   
-            checkLetter(e.target);  
+            if (e.target.tagName === 'BUTTON') {
+            
+                e.target.classList.add('chosen');
+                const chosen = document.getElementsByClassName('chosen');
+                console.log(e.target.textContent);   
+                checkLetter(e.target);
+            }  
         })
     };
 
-
+    // Add an event listener to the keyboard. WHY DOESN'T BUTTON WORK? IT WAS DEFINED AT THE TOP OF THE PAGE.
+    // for (i = 0; i < button.length; i += 1) {
+    //     button[i].addEventListener('click', (e) => {
+    //         e.target.className += "chosen";
+    //         const chosen = document.getElementsByClassName('chosen');
+    //         console.log(e.target.textContent);
+    //         checkLetter(e.target);
+    //     })
+    // };
 
 });
 
