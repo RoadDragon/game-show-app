@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('overlay');
     const qwerty = document.getElementById('qwerty');
     const phrase = document.getElementById('phrase');
     let missed = 0;
@@ -55,20 +56,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     return letter[i];
                 } else {
                     console.log('false');
-                    missed += 1;
                     return null;
                 }
             };
         }
 
     function checkWin() {
-        const overlay = document.getElementById('overlay');
         if (show.length === letters.length) {
             overlay.className += "win";
-        }
-        else if (missed === 5) {
-            overlay.className += "lose";
-        } 
+        }    
         overlay.style.display = "block";
     };
 
@@ -80,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //remove start-game overlay
     startButton.addEventListener('click', (e) => {
-        const overlay = document.getElementById('overlay');
         overlay.style.display = 'none';
     })
 
@@ -93,6 +88,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 const chosen = document.getElementsByClassName('chosen');
                 console.log(e.target.textContent);   
                 checkLetter(e.target);
+                if (letter[i] === null) {
+                    const li = document.querySelectorAll('.tries');
+                    const heart = li.firstChild;
+                    for (i=0; i<li.length; i+=1) {
+                        // https://stackoverflow.com/questions/19936590/replace-an-image-with-another-when-a-different-image-is-hovered-on
+                        li[i].heart.innerHTML('<img src ="lostHeart.png" />');
+                        missed += 1;
+                    }
+                }
+                if (missed === 5) {
+                    overlay.className += "lose";
+                } else {
+                    checkWin();
+                }               
             }  
         })
     };
