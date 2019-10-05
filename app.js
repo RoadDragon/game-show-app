@@ -46,23 +46,27 @@ document.addEventListener('DOMContentLoaded', () => {
 // check chosen letter against phrase
         function checkLetter(button) {
             const letter = document.getElementsByClassName('letter');
+            let match;
             for (i=0; i<letter.length; i+=1) {
                 if (letter[i].innerHTML === button.innerHTML) {
-                    letter[i].classList.add("show");
-                    // const show = document.getElementsByClassName('show');
-                    console.log('true');
-                    // const match = chosen.innerHTML;
-                    // return match;
-                    return letter[i];
-                } else {
-                    console.log('false');
-                    return null;
+                    letter[i].classList.add("show");            
+                    const match = letter[i].innerHTML;
                 }
-            };
-        }
+            } 
+            if (match) {
+                console.log('true');
+                return match;
+            } 
+            else {
+                console.log('false');
+                return null;
+            }
+        };
 
     function checkWin() {
-        if (show.length === letters.length) {
+        const show = document.getElementsByClassName('show');
+        // const letter = document.getElementsByClassName('letter');
+        if (show.length === letter.length) {
             overlay.className += "win";
         }    
         overlay.style.display = "block";
@@ -87,13 +91,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.target.classList.add('chosen');
                 const chosen = document.getElementsByClassName('chosen');
                 console.log(e.target.textContent);   
-                checkLetter(e.target);
-                if (letter[i] === null) {
+                const checkLetterResult = checkLetter(e.target);
+                if (checkLetterResult === null) {
                     const li = document.querySelectorAll('.tries');
                     const heart = li.firstChild;
-                    for (i=0; i<li.length; i+=1) {
+                    const image = document.getElementsByTagName('img');
+                    for (i=0; i<image.length; i+=1) {
+                        // li.removeElement(image);
+                        // li.createElement
                         // https://stackoverflow.com/questions/19936590/replace-an-image-with-another-when-a-different-image-is-hovered-on
-                        li[i].heart.innerHTML('<img src ="lostHeart.png" />');
+                        // image[i].innerHTML='<img src ="lostHeart.png" />';
                         missed += 1;
                     }
                 }
