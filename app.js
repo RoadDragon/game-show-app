@@ -96,10 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     const li = document.querySelectorAll('.tries');
                     const heart = li.firstChild;
                     const img = document.getElementsByTagName('img');
-                    
+                    const newImage = 
                     const liveHeart = document.querySelector("img[name='liveHeart.png']");
                     const lostHeart = '/images/lostHeart.png';
-                    lostHeart.classList ='lostOne';
+                    lostHeart.classList.add ='lostOne';
                     for (i=0; i<img.length; i+=1) {
                         liveHeart.parentNode.removeChild(liveHeart);
                         // li.replaceChild(lostHeart, liveHeart);
