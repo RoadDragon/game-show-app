@@ -95,10 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (checkLetterResult === null) {
                     const li = document.querySelectorAll('.tries');
                     const heart = li.firstChild;
-                    const image = document.getElementsByTagName('img');
-                    for (i=0; i<image.length; i+=1) {
-                        // li.removeElement(image);
-                        // li.createElement
+                    const img = document.getElementsByTagName('img');
+                    
+                    const liveHeart = document.querySelector("img[name='liveHeart.png']");
+                    const lostHeart = '/images/lostHeart.png';
+                    lostHeart.classList ='lostOne';
+                    for (i=0; i<img.length; i+=1) {
+                        liveHeart.parentNode.removeChild(liveHeart);
+                        // li.replaceChild(lostHeart, liveHeart);
+                        // img.remove();
+                        // li.appendChild('.lostOne');
                         // https://stackoverflow.com/questions/19936590/replace-an-image-with-another-when-a-different-image-is-hovered-on
                         // image[i].innerHTML='<img src ="lostHeart.png" />';
                         missed += 1;
