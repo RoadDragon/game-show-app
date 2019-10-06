@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const keyrow = document.getElementsByClassName('keyrow');
     const button = keyrow.children;
     const mainContainer = document.querySelector('.main-container');
+    const ol = document.querySelector('ol');
 
     // source: https://boards.straightdope.com/sdmb/archive/index.php/t-334013.html
     const phrases = [
@@ -95,16 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (checkLetterResult === null) {
                     const li = document.querySelectorAll('.tries');
                     const heart = li.firstChild;
-                    const img = document.getElementsByTagName('img');
-                    const newImage = 
-                    const liveHeart = document.querySelector("img[name='liveHeart.png']");
-                    const lostHeart = '/images/lostHeart.png';
-                    lostHeart.classList.add ='lostOne';
-                    for (i=0; i<img.length; i+=1) {
-                        liveHeart.parentNode.removeChild(liveHeart);
-                        // li.replaceChild(lostHeart, liveHeart);
-                        // img.remove();
-                        // li.appendChild('.lostOne');
+                    const image = document.getElementsByTagName('img');
+                    for (i=0; i<image.length; i+=1) {
+                        // li.removeElement(image);
+                        // li.createElement
                         // https://stackoverflow.com/questions/19936590/replace-an-image-with-another-when-a-different-image-is-hovered-on
                         // image[i].innerHTML='<img src ="lostHeart.png" />';
                         missed += 1;
