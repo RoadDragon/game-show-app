@@ -37,9 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
             li.textContent = arr[i];  //put character in li
             ul.appendChild(li);  //append list item to ul
             if (character !== ' ') {  //add .letter class if character is not space
-                li.className += 'letter'; 
+                li.classList.add('letter'); 
             } else {
-                li.className += 'space';
+                li.classList.add('space');
             }
         }
     }
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             for (i=0; i<letter.length; i+=1) {
                 if (letter[i].innerHTML === button.innerHTML) {
                     letter[i].classList.add("show");            
-                    const match = letter[i].innerHTML;
+                    match = letter[i].innerHTML;
                 }
             } 
             if (match) {
@@ -66,8 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function checkWin() {
         const show = document.getElementsByClassName('show');
-        // const letter = document.getElementsByClassName('letter');
-        if (show.length === letter.length) {
+        // let letter;
+        // let letter = document.getElementsByClassName('letter');
+        if (show.length === match.length) {
             overlay.className += "win";
         }    
         overlay.style.display = "block";
@@ -93,17 +94,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const chosen = document.getElementsByClassName('chosen');
                 console.log(e.target.textContent);   
                 const checkLetterResult = checkLetter(e.target);
-                if (checkLetterResult === null) {
-                    const li = document.querySelectorAll('.tries');
-                    const heart = li.firstChild;
-                    const image = document.getElementsByTagName('img');
-                    for (i=0; i<image.length; i+=1) {
-                        // li.removeElement(image);
-                        // li.createElement
-                        // https://stackoverflow.com/questions/19936590/replace-an-image-with-another-when-a-different-image-is-hovered-on
-                        // image[i].innerHTML='<img src ="lostHeart.png" />';
-                        missed += 1;
-                    }
+                if (checkLetterResult === null) {                   
+                    const heartFirstChild = ol.firstChildElement;
+
+                // const image = document.getElementsByTagName('img');
+                // for (i=0; i<image.length; i+=1) {
+                    let li = document.createElement('li');
+                    li.innerHTML = '<img src="/images/lostHeart.png" height="35px" width="30px:>';
+                    ol.removeChild(ol.lastElementChild);
+                    ol.insertBefore(li, heartFirstChild);
+                    missed += 1;
+                // }
                 }
                 if (missed === 5) {
                     overlay.className += "lose";
